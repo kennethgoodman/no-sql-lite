@@ -16,16 +16,6 @@ $ virtualenv venv
 $ source venv/bin/activate
 ```
 
-## install wsgi
-
-I am using mod_wsgi-httpd to avoid using the default apache version as per:
-https://github.com/GrahamDumpleton/mod_wsgi/issues/357
-```bash
-$ CC=cc pip install mod_wsgi-httpd --no-cache-dir -v
-```
-
-This step may take a couple minutes
-
 ## Set as dev mode
 ```bash
 $ export PYTHONDEVMODE=1
@@ -33,12 +23,47 @@ $ export PYTHONDEVMODE=1
 
 If this is not set or not set to `"1"`, we will run in production mode
 
-## Mac OS Mojave Apache
-```base
-$ apachectl start
+## Docker 
+
+install docker to test in production-like environment: 
+https://www.docker.com/
+
+### commands:
+
+#### Starting Server
+```bash
+$ bash ./start.sh
+```
+
+#### Restarting Server
+```bash
+$ touch uwsgi.ini
+```
+
+#### Storing Data
+```bash
+$ curl  -X PUT \
+        -H "Content-Type: application/json" \
+        --data '{"key":"abcd","data":{"a":"b"}}' \
+        localhost:56733/write_data
+```
+
+#### Fetching Data
+```bash
+$ curl -X GET "localhost:56733/get_data?key=abcd"
+```
+
+#### Seeing Logs
+```bash
+$ docker logs no_sql_lite
+```
+
+#### SSH To Docker 
+```bash
+$ docker exec -it no_sql_lite /bin/bash
 ```
 
 # Running
 ```bash
-$ python src/main.py
+$ python main.py
 ```
