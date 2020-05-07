@@ -4,9 +4,9 @@ from flask import render_template
 
 @app.route('/')
 def home():
-    return "<b>There has been a changes3</b>"
+    return "<b>Welcome To NoSQL-Lite</b>"
 
 
-@app.route('/template')
+@app.route('/get_data_page')
 def template():
-    return render_template('src/templates/home.html')
+    return render_template('get_data_page.html')

@@ -2,4 +2,4 @@
 # from constants import CONFIG_DIR_PATH
 from flask import Flask
 app = Flask(__name__)
-from src import views, requests
+from src import requests, views

@@ -63,6 +63,10 @@ $ docker logs no_sql_lite
 $ docker exec -it no_sql_lite /bin/bash
 ```
 
+## Web pages
+1. [Index Page](http://localhost:56733/)
+2. [Get Data](http://localhost:56733/get_data_page)
+
 # Running
 ```bash
 $ python main.py

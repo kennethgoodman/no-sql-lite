@@ -1,0 +1,17 @@
+<!doctype html>
+
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Welcome</title>
+  </head>
+
+  <body>
+    <h1>Get Data</h1>
+    <form action="{{ url_for('get_data') }}" method="GET">
+      <input type="text" name="key">
+      <input type="submit">
+    </form>
+  </body>
+</html>
