@@ -11,3 +11,6 @@ class RowValue:
 
     def to_file_format(self):
         return json.dumps(self.value)
+
+    def to_json(self):
+        return self.value

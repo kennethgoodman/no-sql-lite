@@ -6,8 +6,8 @@ from .row_value import RowValue
 class Row:
     def __init__(self, key, value):
         self.ts = None
-        self.key = RowKey(key)
-        self.value = RowValue(value)
+        self.key = key
+        self.value = value
 
     @staticmethod
     def from_str(row_str):

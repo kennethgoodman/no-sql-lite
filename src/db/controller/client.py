@@ -2,9 +2,7 @@ import os
 from time import time
 
 from config import config
-from src.db.dal.write import write
-from src.db.dal.read import read
-from src.db.dal.row import Row, RowKey
+from src.db.dal import write, read, Row, RowKey, RowValue
 
 
 class Client:
@@ -22,7 +20,8 @@ class Client:
         self.current_file = "{}.csv".format(time())
 
     def read_data(self, key):
-        return read(RowKey(key), self.current_filepath).value
+        row = read(RowKey(key), self.current_filepath)
+        return row.value.to_json()
 
     def combine_files(self):
         pass
@@ -31,7 +30,9 @@ class Client:
         return False
 
     def write_data(self, key, data):
-        row = Row(key, data)
+        key = RowKey.from_str(key)
+        value = RowValue(data)
+        row = Row(key, value)
         try:
             resp = write(row, self.current_filepath)
         except Exception as e:
@@ -47,5 +48,5 @@ class Client:
 
 if __name__ == '__main__':
     c = Client()
-    c.write_data("a", {})
-    c.read_data("a")
+    c.write_data("b", [123])
+    print(c.read_data("b"))
