@@ -1,7 +1,6 @@
 from flask import request, Blueprint
 from src.db import API
 requests = Blueprint('requests', __name__)
-
 db = API()
 
 
