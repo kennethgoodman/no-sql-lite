@@ -2,7 +2,8 @@ import os
 from time import time
 
 from config import config
-from src.db.dal import write, read, Row, RowKey, RowValue
+from src.db.dal import write, read
+from src.db.row import Row, RowKey, RowValue
 
 
 class Client:

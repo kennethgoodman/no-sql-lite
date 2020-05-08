@@ -1,6 +1,6 @@
 import os
 
-from .row import Row, NullRow
+from src.db.row import Row, NullRow
 
 
 def read(row_key, path):
