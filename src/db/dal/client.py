@@ -4,6 +4,7 @@ from time import time
 from config import config
 from src.db.dal.write import write
 from src.db.dal.read import read
+from src.db.dal.row import Row, RowKey
 
 
 class Client:
@@ -21,7 +22,7 @@ class Client:
         self.current_file = "{}.csv".format(time())
 
     def read_data(self, key):
-        return read(key, self.current_filepath)
+        return read(RowKey(key), self.current_filepath).value
 
     def combine_files(self):
         pass
@@ -30,8 +31,9 @@ class Client:
         return False
 
     def write_data(self, key, data):
+        row = Row(key, data)
         try:
-            resp = write(key, data, self.current_filepath)
+            resp = write(row, self.current_filepath)
         except Exception as e:
             # TODO(kgoodman) log this
             raise e
@@ -45,3 +47,5 @@ class Client:
 
 if __name__ == '__main__':
     c = Client()
+    c.write_data("a", {})
+    c.read_data("a")

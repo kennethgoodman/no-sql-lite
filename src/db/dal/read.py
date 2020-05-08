@@ -1,15 +1,15 @@
 import os
 
-from .row import Row
+from .row import Row, NullRow
 
 
-def read(key, path):
+def read(row_key, path):
     if not os.path.exists(path):
         return None
     with open(path, 'r') as f:
-        current_best_row = None
+        current_best_row = NullRow()
         for line in f:
-            row = Row.parsestr(line)
-            if row.key == key:
+            row = Row.from_str(line)
+            if row.is_equal_to_key(row_key):
                 current_best_row = row
         return current_best_row
