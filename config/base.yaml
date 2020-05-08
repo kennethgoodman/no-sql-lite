@@ -1,2 +1,2 @@
 db:
-  filelocation: /app/dbdata
+  dirlocation: /app/dbdata/

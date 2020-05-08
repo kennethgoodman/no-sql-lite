@@ -1,7 +1,7 @@
 import os
 import json
 from pathlib import Path
-import ntpath
+import time
 
 
 def write(key, data, path):
@@ -11,4 +11,4 @@ def write(key, data, path):
         with open(path, 'w') as f:
             pass
     with open(path, 'a') as f:
-        f.write("{},{}\n".format(key, json.dumps(data)))
+        f.write("{},{},{}\n".format(time.time(), key, json.dumps(data)))

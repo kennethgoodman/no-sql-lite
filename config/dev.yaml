@@ -2,4 +2,4 @@ server:
   host: localhost
   port: 8888
 db:
-  filelocation: db_data
+  dirlocation: db_data/

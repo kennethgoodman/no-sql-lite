@@ -79,8 +79,8 @@ class DB:
         self.db = db
 
     @property
-    def file_location(self):
-        return self.db['filelocation']
+    def dir_location(self):
+        return self.db['dirlocation']
 
     def __repr__(self):
         return str(self.db)
