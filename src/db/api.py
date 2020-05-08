@@ -6,10 +6,7 @@ class API:
         self.client = Client()
 
     def read_data(self, key):
-        data = self.client.read_data(key)
-        if data is not None:
-            return data
-        return {}
+        return self.client.read_data(key)
 
     def write_data(self, key, data):
         return self.client.write_data(key, data)
