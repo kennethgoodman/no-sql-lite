@@ -1,17 +1,17 @@
-from main import app
-from flask import request
+from flask import request, Blueprint
 from src.db import API
+requests = Blueprint('requests', __name__)
 
 db = API()
 
 
-@app.route('/get_data', methods=["GET"])
+@requests.route('/get_data', methods=["GET"])
 def get_data():
     key = request.args.get("key")
     return db.read_data(key)
 
 
-@app.route('/write_data', methods=["PUT"])
+@requests.route('/write_data', methods=["PUT"])
 def upsert_data():
     resp = db.write_data(request.json['key'], request.json['data'])
     if resp is None:
