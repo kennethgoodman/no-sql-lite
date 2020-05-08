@@ -1,4 +1,4 @@
-from .dal import Client
+from .controller import Client
 
 
 class API:

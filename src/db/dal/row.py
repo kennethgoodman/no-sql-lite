@@ -1,27 +1,19 @@
-import time,json
-
-
-class RowKey:
-    def __init__(self, key):
-        self.key = key
-
-    def __eq__(self, other_key):
-        return self.key == other_key.key
-
-    def to_file_format(self):
-        return str(self.key)
+import time
+from .row_key import RowKey
+from .row_value import RowValue
 
 
 class Row:
     def __init__(self, key, value):
         self.ts = None
         self.key = RowKey(key)
-        self.value = value
+        self.value = RowValue(value)
 
     @staticmethod
     def from_str(row_str):
         ts, key, value = row_str.split(",")
-        value = json.loads(value)
+        key = RowKey.from_str(key)
+        value = RowValue.from_str(value)
         row = Row(key, value)
         row.ts = ts
         return row
@@ -29,7 +21,7 @@ class Row:
     def to_file_format(self):
         if self.ts is None:
             self.ts = time.time()
-        return "{},{},{}".format(self.ts, self.key.to_file_format(), json.dumps(self.value))
+        return "{},{},{}".format(self.ts, self.key.to_file_format(), self.value.to_file_format())
 
     def is_equal_to_key(self, other_row_key):
         return self.key == other_row_key
