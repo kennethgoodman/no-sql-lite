@@ -36,6 +36,8 @@ $ bash ./start.sh
 ```
 
 #### Restarting Server
+
+##### TODO(kgoodman) DOESNT WORK RIGHT NOW
 ```bash
 $ touch uwsgi.ini
 ```
