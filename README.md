@@ -16,6 +16,10 @@ $ virtualenv venv
 $ source venv/bin/activate
 ```
 
+## Pycharm
+
+You will need to set `app` as a source root
+
 ## Set as dev mode
 ```bash
 $ export PYTHONDEVMODE=1
