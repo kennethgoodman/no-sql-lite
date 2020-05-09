@@ -26,6 +26,11 @@ class Row:
     def is_equal_to_key(self, other_row_key):
         return self.key == other_row_key
 
+    def get_json_value(self):
+        if self.value is None:
+            return None
+        return self.value.to_json()
+
 
 class NullRow(Row):
     def __init__(self):

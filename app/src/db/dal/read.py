@@ -5,7 +5,7 @@ from src.db.row import Row, NullRow
 
 def read(row_key, path):
     if not os.path.exists(path):
-        return None
+        return NullRow()
     with open(path, 'r') as f:
         current_best_row = NullRow()
         for line in f:
