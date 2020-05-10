@@ -8,7 +8,12 @@ class Manager:
         self.current_filename, self.current_filename_ts = self.get_most_recent_file()
         self.count = self.get_line_count()
 
+    def get_current_path(self):
+        return os.path.join(self.path, self.current_filename)
+
     def get_all_files(self):
+        if not os.path.exists(self.path):
+            return
         for fn in os.listdir(self.path):
             yield fn
 
@@ -17,6 +22,9 @@ class Manager:
         for fn in self.get_all_files():
             if float(fn) > most_recent_ts:
                 most_recent, most_recent_ts = fn, float(fn)
+        if most_recent is None:
+            fn = self.get_current_fn()
+            return self.get_current_fn(), float(fn)
         return most_recent, most_recent_ts
 
     def combine_files(self):
@@ -44,6 +52,8 @@ class Manager:
         if fn is None:
             fn = self.current_filename
         path = os.path.join(self.path, fn)
+        if not os.path.exists(path):
+            return 0
         c = 0
         with open(path, 'r') as f:
             for _ in f:

@@ -29,5 +29,5 @@ class Client:
 
 if __name__ == '__main__':
     c = Client()
-    c.write_data("b", [123])
+    c.write_data("c", {"a":1})
     print(c.read_data("b"))

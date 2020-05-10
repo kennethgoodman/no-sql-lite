@@ -37,7 +37,7 @@ class Manager:
         segment = self.key_to_segment(key)
         if segment not in self.segment_managers:
             self.add_segment_manager(segment)
-        return self.segment_managers[segment].current_filename
+        return self.segment_managers[segment].get_current_path()
 
     def add_write(self, key):
         segment = self.key_to_segment(key)
